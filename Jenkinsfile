@@ -8,7 +8,7 @@ pipeline {
         }
         stage('build') { 
             steps {
-                sh '''
+                bat '''
 					mvn clean package
 					cd target
 					cp ../src/main/resources/web.config web.config
