@@ -14,7 +14,7 @@ pipeline {
         stage('deploy') { 
             steps {
                 azureWebAppPublish azureCredentialsId: env.AZURE_CRED_ID,
-				resourceGroup: env.RES_GROUP, appName: env.WEB_APP, filePath: "**/springazureconnector.zip"
+				resourceGroup: env.RES_GROUP, appName: env.WEB_APP
             }
         }
     }
