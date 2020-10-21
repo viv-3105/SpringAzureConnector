@@ -15,8 +15,6 @@
 	<name>SpringAzureConnector</name>
 	<description>Reading configurtion from azure using Spring Boot</description>
 
-	<packaging>war</packaging>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

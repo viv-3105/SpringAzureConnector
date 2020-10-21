@@ -8,14 +8,15 @@ pipeline {
         }
         stage('build') { 
             steps {
-                bat 'dir' 
                 bat 'mvn clean package'
+				bat 'docker build -f PATH/Dockerfile -t spring-azure-connector-new .x'
 		    }
         }
         stage('deploy') { 
             steps {
-                azureWebAppPublish azureCredentialsId: env.AZURE_CRED_ID,
-				resourceGroup: env.RES_GROUP, appName: env.WEB_APP, filePath: "**/SpringAzureConnector-0.0.1-SNAPSHOT.war"
+                bat 'docker login connectorregistory.azurecr.io'
+				bat 'docker tag spring-azure-connector-new connectorregistory.azurecr.io/spring-azure-connector-new:v1'
+				bat 'docker push connectorregistory.azurecr.io/spring-azure-connector-new:v1'
             }
         }
     }
