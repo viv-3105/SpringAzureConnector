@@ -9,7 +9,11 @@ pipeline {
         stage('build') { 
             steps {
                 bat 'mvn clean package'
-				bat 'docker build -f PATH/Dockerfile -t spring-azure-connector-new .x'
+				def testImage = docker.build("spring-azure-connector-new", "./dockerfiles/spring-azure-connector-new") 
+
+				testImage.inside {
+					sh 'make test'
+				}
 		    }
         }
         stage('deploy') { 
